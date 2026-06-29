@@ -148,15 +148,16 @@ export default function ProductsPage() {
 
   const handleEdit = (product: Product) => {
     setFormData({
-      name: product.name,
-      description: product.description,
-      price: product.price.toString(),
-      category_id: product.category_id,
-      is_available: product.is_available,
+      name: product.name || '',
+      description: product.description || '',
+      price: product.price ? product.price.toString() : '',
+      category_id: product.category_id || '',
+      is_available: product.is_available ?? true,
       image_url: product.image_url || '',
     })
     setEditingId(product.id)
     setShowForm(true)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const handleDelete = async (id: string) => {
@@ -254,11 +255,17 @@ export default function ProductsPage() {
           {/* Add Product Button */}
           <div className="mb-8">
             <button
-              onClick={() => setShowForm(!showForm)}
+              onClick={() => {
+                setShowForm(!showForm)
+                if (!showForm) {
+                  resetForm()
+                  setShowForm(true)
+                }
+              }}
               className="bg-black text-[#FFDD00] font-black text-xl uppercase px-8 py-4 rounded-xl border-4 border-black shadow-[6px_6px_0px_0px_rgba(227,24,55,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all flex items-center gap-3"
             >
               <Plus className="w-6 h-6 stroke-[3]" />
-              {showForm ? 'CANCEL' : 'ADD NEW PRODUCT'}
+              {showForm && !editingId ? 'CANCEL' : 'ADD NEW PRODUCT'}
             </button>
           </div>
 
