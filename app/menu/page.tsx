@@ -91,7 +91,7 @@ export default function MenuPage() {
       <section className="relative bg-primary text-white py-8 px-4 border-b-4 border-black shadow-[0px_4px_0px_0px_rgba(0,0,0,1)] mb-8">
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-black mb-3 uppercase tracking-tighter style-stroke-sm text-black">Our Menu</h1>
-          <p className="text-lg font-bold bg-black text-white inline-block px-4 py-1.5 rounded-lg transform -rotate-1 border border-white shadow-[2px_2px_0px_0px_rgba(255,221,0,1)]">
+          <p className="text-sm sm:text-base md:text-lg font-bold bg-black text-white inline-block px-3 md:px-4 py-1.5 rounded-lg transform -rotate-1 border border-white shadow-[2px_2px_0px_0px_rgba(255,221,0,1)]">
             EXPLORE OUR DELICIOUS SELECTION!
           </p>
         </div>
@@ -215,9 +215,9 @@ export default function MenuPage() {
         <div className="absolute top-0 right-0 w-64 h-64 bg-primary rounded-full blur-3xl opacity-20 -mr-20 -mt-20"></div>
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary rounded-full blur-3xl opacity-20 -ml-20 -mb-20"></div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h2 className="text-6xl md:text-7xl font-black mb-6 uppercase tracking-tight text-secondary style-stroke-sm">CRAVING MORE?</h2>
-          <p className="text-2xl font-bold mb-10 text-white">CHECK OUT OUR DAILY DEALS AND SAVE BIG ON YOUR FAVORITE MEALS!</p>
-          <a href="/" className="inline-block bg-primary text-white font-black uppercase tracking-widest text-xl px-12 py-5 rounded-2xl border-4 border-white shadow-[8px_8px_0px_0px_rgba(255,221,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-[4px_4px_0px_0px_rgba(255,221,0,1)] transition-all">
+          <h2 className="text-4xl sm:text-5xl md:text-7xl font-black mb-4 md:mb-6 uppercase tracking-tight text-secondary style-stroke-sm">CRAVING MORE?</h2>
+          <p className="text-lg md:text-2xl font-bold mb-8 md:mb-10 text-white">CHECK OUT OUR DAILY DEALS AND SAVE BIG ON YOUR FAVORITE MEALS!</p>
+          <a href="/" className="inline-block bg-primary text-white font-black uppercase tracking-widest text-lg md:text-xl px-8 md:px-12 py-4 md:py-5 rounded-2xl border-4 border-white shadow-[6px_6px_0px_0px_rgba(255,221,0,1)] md:shadow-[8px_8px_0px_0px_rgba(255,221,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-[4px_4px_0px_0px_rgba(255,221,0,1)] transition-all">
             VIEW HOME
           </a>
         </div>

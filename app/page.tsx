@@ -23,28 +23,28 @@ export default function HomePage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-24 px-4 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+CjxwYXRoIGQ9Ik0yMCAwTDIwIDQwTTAgMjBMMDAgMjAiIHN0cm9rZT0iI0U1QzMwMCIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIiAvPgo8L3N2Zz4=')]">
+      <section className="relative overflow-hidden py-12 md:py-24 px-4 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+CjxwYXRoIGQ9Ik0yMCAwTDIwIDQwTTAgMjBMMDAgMjAiIHN0cm9rZT0iI0U1QzMwMCIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIiAvPgo8L3N2Zz4=')]">
         <div className="max-w-6xl mx-auto text-center relative z-10">
-          <div className="mb-10 inline-block rotate-[-2deg]">
-            <span className="star-badge text-xl px-8 py-4 animate-bounce-gentle border-2 border-black">
+          <div className="mb-6 md:mb-10 inline-block rotate-[-2deg]">
+            <span className="star-badge text-sm md:text-xl px-4 md:px-8 py-2 md:py-4 animate-bounce-gentle border-2 border-black">
               🔥 HOT, FRESH & DELIVERED FAST 🔥
             </span>
           </div>
-          <h1 className="star-title mb-8 text-7xl md:text-9xl">
+          <h1 className="star-title mb-6 md:mb-8 text-5xl sm:text-6xl md:text-8xl lg:text-9xl">
             CRAVING<br />
-            <span className="text-primary style-stroke bg-white px-4 rounded-3xl border-8 border-black shadow-[12px_12px_0px_0px_rgba(227,24,55,1)] inline-block mt-4 mb-4 transform rotate-2">PERFECTION?</span>
+            <span className="text-primary style-stroke bg-white px-2 md:px-4 rounded-xl md:rounded-3xl border-4 md:border-8 border-black shadow-[6px_6px_0px_0px_rgba(227,24,55,1)] md:shadow-[12px_12px_0px_0px_rgba(227,24,55,1)] inline-block mt-2 md:mt-4 mb-2 md:mb-4 transform rotate-2">PERFECTION?</span>
           </h1>
-          <p className="star-subtitle mb-12 text-2xl md:text-3xl max-w-3xl mx-auto bg-white inline-block p-4 rounded-xl border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] rotate-[-1deg]">
+          <p className="star-subtitle mb-8 md:mb-12 text-lg sm:text-xl md:text-3xl max-w-3xl mx-auto bg-white inline-block p-3 md:p-4 rounded-xl border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] rotate-[-1deg]">
             Crispy pizzas, juicy burgers, and golden fried chicken ready to blow your mind.
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center mt-8">
+          <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center mt-6 md:mt-8">
             <Link href="/menu">
-              <button className="star-button text-2xl px-12 py-6">
+              <button className="star-button text-xl md:text-2xl px-8 md:px-12 py-4 md:py-6 w-full sm:w-auto">
                 ORDER NOW ➔
               </button>
             </Link>
             <Link href="#deals">
-              <button className="star-button-secondary text-2xl px-12 py-6">
+              <button className="star-button-secondary text-xl md:text-2xl px-8 md:px-12 py-4 md:py-6 w-full sm:w-auto">
                 VIEW DEALS
               </button>
             </Link>
@@ -69,11 +69,11 @@ export default function HomePage() {
       </section>
 
       {/* Featured Categories */}
-      <section className="py-24 px-4">
+      <section className="py-12 md:py-24 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16 bg-white border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-8 rounded-3xl inline-block mx-auto transform -rotate-1">
-            <h2 className="star-title text-6xl md:text-7xl mb-4">WHAT'S YOUR CRAVING?</h2>
-            <p className="star-subtitle text-2xl uppercase">Pick your favorite and enjoy the taste of excellence</p>
+          <div className="text-center mb-10 md:mb-16 bg-white border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-4 md:p-8 rounded-2xl md:rounded-3xl inline-block mx-auto transform -rotate-1">
+            <h2 className="star-title text-4xl sm:text-5xl md:text-7xl mb-2 md:mb-4">WHAT'S YOUR CRAVING?</h2>
+            <p className="star-subtitle text-lg md:text-2xl uppercase">Pick your favorite and enjoy the taste of excellence</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -123,10 +123,10 @@ export default function HomePage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="bg-white border-y-8 border-black py-24 px-4 relative">
+      <section className="bg-white border-y-8 border-black py-16 md:py-24 px-4 relative">
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#E31837_2px,transparent_2px)] [background-size:20px_20px]" />
         <div className="max-w-7xl mx-auto relative z-10">
-          <h2 className="star-title text-6xl md:text-8xl text-center mb-16 rotate-1">WHY STAR BITES?</h2>
+          <h2 className="star-title text-5xl sm:text-6xl md:text-8xl text-center mb-10 md:mb-16 rotate-1">WHY STAR BITES?</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="star-card bg-[#FFDD00] text-center">
@@ -165,13 +165,13 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section id="deals" className="bg-primary text-white py-24 px-4 relative overflow-hidden border-b-8 border-black">
+      <section id="deals" className="bg-primary text-white py-16 md:py-24 px-4 relative overflow-hidden border-b-8 border-black">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0ibm9uZSIvPgo8Y2lyY2xlIGN4PSIzIiBjeT0iMyIgcj0iMiIgZmlsbD0icmdiYSgwLDAsMCwwLjIpIi8+Cjwvc3ZnPg==')] opacity-30" />
-        <div className="max-w-4xl mx-auto text-center relative z-10 bg-white p-12 rounded-3xl border-8 border-black shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] rotate-1">
-          <h2 className="text-6xl md:text-8xl font-black mb-6 text-black style-stroke uppercase">READY TO ORDER?</h2>
-          <p className="text-2xl md:text-3xl mb-10 font-bold text-black border-t-4 border-b-4 border-black py-4">Browse our delicious menu and get your favorites delivered fast!</p>
+        <div className="max-w-4xl mx-auto text-center relative z-10 bg-white p-6 sm:p-8 md:p-12 rounded-3xl border-4 md:border-8 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] md:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] rotate-1">
+          <h2 className="text-4xl sm:text-5xl md:text-8xl font-black mb-4 md:mb-6 text-black style-stroke uppercase">READY TO ORDER?</h2>
+          <p className="text-lg md:text-3xl mb-6 md:mb-10 font-bold text-black border-t-4 border-b-4 border-black py-4">Browse our delicious menu and get your favorites delivered fast!</p>
           <Link href="/menu">
-            <button className="bg-black text-[#FFDD00] font-black text-3xl px-12 py-6 rounded-2xl hover:bg-gray-900 transition-all duration-300 shadow-[8px_8px_0px_0px_rgba(227,24,55,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(227,24,55,1)] active:scale-95 border-4 border-black uppercase">
+            <button className="bg-black text-[#FFDD00] font-black text-xl md:text-3xl px-8 md:px-12 py-4 md:py-6 rounded-2xl hover:bg-gray-900 transition-all duration-300 shadow-[6px_6px_0px_0px_rgba(227,24,55,1)] md:shadow-[8px_8px_0px_0px_rgba(227,24,55,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(227,24,55,1)] active:scale-95 border-4 border-black uppercase w-full sm:w-auto">
               EXPLORE FULL MENU ➔
             </button>
           </Link>

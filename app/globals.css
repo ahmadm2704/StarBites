@@ -130,7 +130,7 @@
   }
 
   .star-title {
-    @apply text-5xl md:text-7xl font-black text-black tracking-tight leading-tight uppercase;
+    @apply text-4xl sm:text-5xl md:text-7xl font-black text-black tracking-tight leading-tight uppercase;
     text-shadow: 2px 2px 0 #FFF, -2px -2px 0 #FFF, 2px -2px 0 #FFF, -2px 2px 0 #FFF;
   }
 
