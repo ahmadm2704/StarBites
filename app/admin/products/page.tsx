@@ -37,6 +37,7 @@ export default function ProductsPage() {
   const [loading, setLoading] = useState(true)
   const [showForm, setShowForm] = useState(false)
   const [editingId, setEditingId] = useState<string | null>(null)
+  const [uploadingImage, setUploadingImage] = useState(false)
 
   // Form state
   const [formData, setFormData] = useState({
@@ -71,6 +72,36 @@ export default function ProductsPage() {
       console.error('Error fetching data:', error)
     } finally {
       setLoading(false)
+    }
+  }
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      if (!e.target.files || e.target.files.length === 0) return
+      
+      const file = e.target.files[0]
+      const fileExt = file.name.split('.').pop()
+      const fileName = `${Math.random().toString(36).substring(2, 15)}.${fileExt}`
+      const filePath = `${fileName}`
+
+      setUploadingImage(true)
+
+      const { error: uploadError } = await supabase.storage
+        .from('product-images')
+        .upload(filePath, file)
+
+      if (uploadError) throw uploadError
+
+      const { data } = supabase.storage
+        .from('product-images')
+        .getPublicUrl(filePath)
+
+      setFormData({ ...formData, image_url: data.publicUrl })
+    } catch (error) {
+      console.error('Error uploading image:', error)
+      alert('Error uploading image. Please check if the bucket exists and permissions are correct.')
+    } finally {
+      setUploadingImage(false)
     }
   }
 
@@ -298,15 +329,32 @@ export default function ProductsPage() {
 
                   <div>
                     <label className="block text-lg font-black text-black mb-2 uppercase">
-                      Image URL
+                      Image Upload / URL
                     </label>
-                    <input
-                      type="text"
-                      value={formData.image_url}
-                      onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
-                      className="w-full px-4 py-4 bg-gray-50 border-4 border-black rounded-xl focus:outline-none focus:ring-4 focus:ring-[#FFDD00] transition text-xl font-bold placeholder-gray-400 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
-                      placeholder="HTTPS://EXAMPLE.COM/IMAGE.JPG"
-                    />
+                    <div className="space-y-4">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageUpload}
+                        disabled={uploadingImage}
+                        className="w-full px-4 py-3 bg-white border-4 border-black rounded-xl focus:outline-none focus:ring-4 focus:ring-[#FFDD00] transition text-sm font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-black file:bg-black file:text-white hover:file:bg-gray-800"
+                      />
+                      <div className="text-center font-black text-sm uppercase">OR</div>
+                      <input
+                        type="text"
+                        value={formData.image_url}
+                        onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
+                        className="w-full px-4 py-4 bg-gray-50 border-4 border-black rounded-xl focus:outline-none focus:ring-4 focus:ring-[#FFDD00] transition text-xl font-bold placeholder-gray-400 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+                        placeholder="HTTPS://EXAMPLE.COM/IMAGE.JPG"
+                      />
+                      {uploadingImage && <p className="text-primary font-black uppercase text-sm animate-pulse">UPLOADING IMAGE...</p>}
+                      {formData.image_url && (
+                        <div className="mt-4 relative w-32 h-32 border-4 border-black rounded-xl overflow-hidden shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={formData.image_url} alt="Preview" className="w-full h-full object-cover" />
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
 
