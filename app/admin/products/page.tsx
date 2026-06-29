@@ -157,7 +157,6 @@ export default function ProductsPage() {
     })
     setEditingId(product.id)
     setShowForm(true)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const handleDelete = async (id: string) => {
@@ -269,124 +268,133 @@ export default function ProductsPage() {
             </button>
           </div>
 
-          {/* Add/Edit Form */}
+          {/* Add/Edit Modal */}
           {showForm && (
-            <div className="bg-white rounded-3xl shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] border-8 border-black p-8 mb-12">
-              <h3 className="text-3xl font-black text-black uppercase tracking-tight mb-8">
-                {editingId ? 'EDIT PRODUCT' : 'ADD NEW PRODUCT'}
-              </h3>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div>
-                    <label className="block text-lg font-black text-black mb-2 uppercase">
-                      Product Name *
-                    </label>
-                    <input
-                      type="text"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-4 bg-gray-50 border-4 border-black rounded-xl focus:outline-none focus:ring-4 focus:ring-[#FFDD00] transition text-xl font-bold placeholder-gray-400 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
-                      placeholder="E.G., MARGHERITA PIZZA"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-lg font-black text-black mb-2 uppercase">
-                      Category *
-                    </label>
-                    <select
-                      value={formData.category_id}
-                      onChange={(e) => setFormData({ ...formData, category_id: e.target.value })}
-                      className="w-full px-4 py-4 bg-gray-50 border-4 border-black rounded-xl focus:outline-none focus:ring-4 focus:ring-[#FFDD00] transition text-xl font-bold placeholder-gray-400 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
-                    >
-                      <option value="">SELECT CATEGORY</option>
-                      {categories.map(cat => (
-                        <option key={cat.id} value={cat.id}>{cat.name.toUpperCase()}</option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-lg font-black text-black mb-2 uppercase">
-                      Price (PKR) *
-                    </label>
-                    <input
-                      type="number"
-                      step="0.01"
-                      value={formData.price}
-                      onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                      className="w-full px-4 py-4 bg-gray-50 border-4 border-black rounded-xl focus:outline-none focus:ring-4 focus:ring-[#FFDD00] transition text-xl font-bold placeholder-gray-400 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
-                      placeholder="0.00"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-lg font-black text-black mb-2 uppercase">
-                      Status
-                    </label>
-                    <select
-                      value={formData.is_available ? 'available' : 'unavailable'}
-                      onChange={(e) => setFormData({ ...formData, is_available: e.target.value === 'available' })}
-                      className="w-full px-4 py-4 bg-gray-50 border-4 border-black rounded-xl focus:outline-none focus:ring-4 focus:ring-[#FFDD00] transition text-xl font-bold placeholder-gray-400 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
-                    >
-                      <option value="available">AVAILABLE</option>
-                      <option value="unavailable">UNAVAILABLE</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-lg font-black text-black mb-2 uppercase">
-                      Image Upload / URL
-                    </label>
-                    <div className="space-y-4">
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageUpload}
-                        disabled={uploadingImage}
-                        className="w-full px-4 py-3 bg-white border-4 border-black rounded-xl focus:outline-none focus:ring-4 focus:ring-[#FFDD00] transition text-sm font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-black file:bg-black file:text-white hover:file:bg-gray-800"
-                      />
-                      <div className="text-center font-black text-sm uppercase">OR</div>
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto">
+              <div className="bg-white rounded-3xl shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] border-8 border-black p-6 md:p-8 w-full max-w-4xl max-h-[90vh] overflow-y-auto relative animate-in fade-in zoom-in-95 duration-200">
+                <button
+                  type="button"
+                  onClick={resetForm}
+                  className="absolute top-4 right-4 md:top-6 md:right-6 p-2 bg-white border-4 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 rounded-xl transition"
+                >
+                  <X className="w-6 h-6 stroke-[3]" />
+                </button>
+                <h3 className="text-3xl font-black text-black uppercase tracking-tight mb-8">
+                  {editingId ? 'EDIT PRODUCT' : 'ADD NEW PRODUCT'}
+                </h3>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                    <div>
+                      <label className="block text-lg font-black text-black mb-2 uppercase">
+                        Product Name *
+                      </label>
                       <input
                         type="text"
-                        value={formData.image_url}
-                        onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         className="w-full px-4 py-4 bg-gray-50 border-4 border-black rounded-xl focus:outline-none focus:ring-4 focus:ring-[#FFDD00] transition text-xl font-bold placeholder-gray-400 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
-                        placeholder="HTTPS://EXAMPLE.COM/IMAGE.JPG"
+                        placeholder="E.G., MARGHERITA PIZZA"
                       />
-                      {uploadingImage && <p className="text-primary font-black uppercase text-sm animate-pulse">UPLOADING IMAGE...</p>}
-                      {formData.image_url && (
-                        <div className="mt-4 relative w-32 h-32 border-4 border-black rounded-xl overflow-hidden shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={formData.image_url} alt="Preview" className="w-full h-full object-cover" />
-                        </div>
-                      )}
+                    </div>
+
+                    <div>
+                      <label className="block text-lg font-black text-black mb-2 uppercase">
+                        Category *
+                      </label>
+                      <select
+                        value={formData.category_id}
+                        onChange={(e) => setFormData({ ...formData, category_id: e.target.value })}
+                        className="w-full px-4 py-4 bg-gray-50 border-4 border-black rounded-xl focus:outline-none focus:ring-4 focus:ring-[#FFDD00] transition text-xl font-bold placeholder-gray-400 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+                      >
+                        <option value="">SELECT CATEGORY</option>
+                        {categories.map(cat => (
+                          <option key={cat.id} value={cat.id}>{cat.name.toUpperCase()}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-lg font-black text-black mb-2 uppercase">
+                        Price (PKR) *
+                      </label>
+                      <input
+                        type="number"
+                        step="0.01"
+                        value={formData.price}
+                        onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+                        className="w-full px-4 py-4 bg-gray-50 border-4 border-black rounded-xl focus:outline-none focus:ring-4 focus:ring-[#FFDD00] transition text-xl font-bold placeholder-gray-400 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+                        placeholder="0.00"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-lg font-black text-black mb-2 uppercase">
+                        Status
+                      </label>
+                      <select
+                        value={formData.is_available ? 'available' : 'unavailable'}
+                        onChange={(e) => setFormData({ ...formData, is_available: e.target.value === 'available' })}
+                        className="w-full px-4 py-4 bg-gray-50 border-4 border-black rounded-xl focus:outline-none focus:ring-4 focus:ring-[#FFDD00] transition text-xl font-bold placeholder-gray-400 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+                      >
+                        <option value="available">AVAILABLE</option>
+                        <option value="unavailable">UNAVAILABLE</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-lg font-black text-black mb-2 uppercase">
+                        Image Upload / URL
+                      </label>
+                      <div className="space-y-4">
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={handleImageUpload}
+                          disabled={uploadingImage}
+                          className="w-full px-4 py-3 bg-white border-4 border-black rounded-xl focus:outline-none focus:ring-4 focus:ring-[#FFDD00] transition text-sm font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-black file:bg-black file:text-white hover:file:bg-gray-800"
+                        />
+                        <div className="text-center font-black text-sm uppercase">OR</div>
+                        <input
+                          type="text"
+                          value={formData.image_url}
+                          onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
+                          className="w-full px-4 py-4 bg-gray-50 border-4 border-black rounded-xl focus:outline-none focus:ring-4 focus:ring-[#FFDD00] transition text-xl font-bold placeholder-gray-400 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+                          placeholder="HTTPS://EXAMPLE.COM/IMAGE.JPG"
+                        />
+                        {uploadingImage && <p className="text-primary font-black uppercase text-sm animate-pulse">UPLOADING IMAGE...</p>}
+                        {formData.image_url && (
+                          <div className="mt-4 relative w-32 h-32 border-4 border-black rounded-xl overflow-hidden shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src={formData.image_url} alt="Preview" className="w-full h-full object-cover" />
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div>
-                  <label className="block text-lg font-black text-black mb-2 uppercase">
-                    Description
-                  </label>
-                  <textarea
-                    value={formData.description}
-                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                    className="w-full px-4 py-4 bg-gray-50 border-4 border-black rounded-xl focus:outline-none focus:ring-4 focus:ring-[#FFDD00] transition text-xl font-bold placeholder-gray-400 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
-                    placeholder="PRODUCT DESCRIPTION..."
-                    rows={4}
-                  />
-                </div>
+                  <div>
+                    <label className="block text-lg font-black text-black mb-2 uppercase">
+                      Description
+                    </label>
+                    <textarea
+                      value={formData.description}
+                      onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                      className="w-full px-4 py-4 bg-gray-50 border-4 border-black rounded-xl focus:outline-none focus:ring-4 focus:ring-[#FFDD00] transition text-xl font-bold placeholder-gray-400 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+                      placeholder="PRODUCT DESCRIPTION..."
+                      rows={4}
+                    />
+                  </div>
 
-                <div className="flex gap-4 pt-4 border-t-4 border-black border-dashed">
-                  <button type="submit" className="bg-primary text-white font-black text-xl uppercase px-8 py-4 rounded-xl border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
-                    {editingId ? 'UPDATE PRODUCT' : 'ADD PRODUCT'}
-                  </button>
-                  <button type="button" onClick={resetForm} className="bg-white text-black font-black text-xl uppercase px-8 py-4 rounded-xl border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
-                    CANCEL
-                  </button>
-                </div>
-              </form>
+                  <div className="flex gap-4 pt-4 border-t-4 border-black border-dashed">
+                    <button type="submit" className="bg-primary text-white font-black text-xl uppercase px-8 py-4 rounded-xl border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
+                      {editingId ? 'UPDATE PRODUCT' : 'ADD PRODUCT'}
+                    </button>
+                    <button type="button" onClick={resetForm} className="bg-white text-black font-black text-xl uppercase px-8 py-4 rounded-xl border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
+                      CANCEL
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
           )}
 
