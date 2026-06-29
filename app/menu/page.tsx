@@ -57,8 +57,16 @@ export default function MenuPage() {
         .order('name')
       
       if (data) {
-        // Deduplicate
-        const unique = Array.from(new Map(data.map(item => [`${item.name}-${item.category_id}`, item])).values())
+        // Deduplicate, preferring items with images over items without
+        const uniqueMap = new Map<string, Product>()
+        data.forEach(item => {
+          const key = `${item.name}-${item.category_id}`
+          const existing = uniqueMap.get(key)
+          if (!existing || (!existing.image_url && item.image_url)) {
+            uniqueMap.set(key, item)
+          }
+        })
+        const unique = Array.from(uniqueMap.values())
         setProducts(unique)
       }
     } catch (error) {
